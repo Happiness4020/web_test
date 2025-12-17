@@ -49,7 +49,7 @@ Trước khi cài đặt, đảm bảo bạn đã cài đặt:
 ```bash
 # Nếu từ Git
 git clone <repository-url>
-cd Web_Test_Visnam
+cd web_test
 
 # Nếu tải file nén, giải nén và mở thư mục gốc
 ```
