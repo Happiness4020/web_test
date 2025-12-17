@@ -459,14 +459,6 @@ docker-compose up --build
 - HTTPS redirection đã tắt
 - Dữ liệu lưu trong memory (mất khi restart)
 
-### Production
-
-- Bật HTTPS / TLS (dùng reverse proxy)
-- Cấu hình CORS cho domains cụ thể
-- Kết nối database thực (thay vì in-memory)
-- Thiết lập logging và monitoring
-- Đặt environment variables bảo mật
-
 ---
 
 ## 📝 Ví dụ API
