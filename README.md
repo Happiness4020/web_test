@@ -327,7 +327,7 @@ error: Listen on 'http://0.0.0.0:5000' failed
 - Kiểm tra port 5000 đã bị sử dụng: `netstat -ano | findstr :5000` (Windows)
 - Đóng ứng dụng dùng port 5000 hoặc đổi port
 - Chạy với port khác: `dotnet run --urls http://localhost:5001`
-- Cập nhật `VITE_API_BASE` trong file '.env' nếu đổi port
+- Cập nhật `VITE_API_BASE` trong file '.env' của Frontend nếu đổi port
 
 ### 2. Frontend không kết nối backend
 
@@ -338,6 +338,7 @@ GET http://localhost:5000/api/products 404 (Not Found)
 **Giải pháp:**
 
 - Đảm bảo backend đang chạy
+- Kiểm tra backend có đổi port khi chạy hay không
 - Kiểm tra `.env` có đúng `VITE_API_BASE`
 - Kiểm tra CORS: Backend phải allow frontend URL
 - Xóa cache browser: `Ctrl+Shift+Delete`
@@ -400,8 +401,47 @@ netstat -ano | findstr :5173
 taskkill /PID <PID> /F
 
 # Hoặc chạy port khác
-npm run dev -- --port 5174
+Chạy: npm run dev -- --port 5174
+Hoặc: npx vite --host --port 5174
 ```
+
+**Nếu dùng terminal thì khi đổi port vào file 'Program.cs' của backend đổi port của frontend lại**
+```
+.WithOrigins(
+                "http://localhost:5174",
+                "http://127.0.0.1:5174"
+            )
+```
+- Sau đó chỉnh cần chạy lại 2 terminal của frontend và backend
+
+
+**Nếu dùng Docker-compose thì** 
+```
+server:
+    build:
+      context: ./server
+    ports:
+      - "5000:5000" --> chỉnh port backend 5000 thành 5001 
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+    networks:
+      - posnet
+
+  client:
+    build:
+      context: ./client
+      args:
+        # Dùng host (localhost) vì trình duyệt truy cập từ máy bạn, không nằm trong mạng docker internal
+        VITE_API_BASE: http://localhost:5000/api
+        VITE_SIGNALR_URL: http://localhost:5000/orderhub
+    ports:
+      - "5174:80"  --> chỉnh port frontend 5173 thành 5174 
+    depends_on:
+      - server
+    networks:
+      - posnet
+```
+
 
 ---
 
