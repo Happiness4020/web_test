@@ -327,7 +327,7 @@ error: Listen on 'http://0.0.0.0:5000' failed
 - Kiểm tra port 5000 đã bị sử dụng: `netstat -ano | findstr :5000` (Windows)
 - Đóng ứng dụng dùng port 5000 hoặc đổi port
 - Chạy với port khác: `dotnet run --urls http://localhost:5001`
-- Cập nhật `VITE_API_BASE` nếu đổi port
+- Cập nhật `VITE_API_BASE` trong file '.env' nếu đổi port
 
 ### 2. Frontend không kết nối backend
 
@@ -338,7 +338,7 @@ GET http://localhost:5000/api/products 404 (Not Found)
 **Giải pháp:**
 
 - Đảm bảo backend đang chạy
-- Kiểm tra `.env.local` có đúng `VITE_API_BASE`
+- Kiểm tra `.env` có đúng `VITE_API_BASE`
 - Kiểm tra CORS: Backend phải allow frontend URL
 - Xóa cache browser: `Ctrl+Shift+Delete`
 
@@ -351,7 +351,7 @@ WebSocket is closed with status code 1006
 **Giải pháp:**
 
 - Backend phải chạy HTTP (không HTTPS trong dev)
-- Kiểm tra `VITE_SIGNALR_URL` đúng endpoint
+- Kiểm tra `VITE_SIGNALR_URL` trong file '.env' đúng endpoint
 - Kiểm tra firewall không chặn WebSocket
 
 ### 4. Docker build thất bại
