@@ -1,0 +1,31 @@
+
+
+services:
+  server:
+    build:
+      context: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+    networks:
+      - posnet
+
+  client:
+    build:
+      context: ./client
+      args:
+        # Dùng host (localhost) vì trình duyệt truy cập từ máy bạn, không nằm trong mạng docker internal
+        VITE_API_BASE: http://localhost:5000/api
+        VITE_SIGNALR_URL: http://localhost:5000/orderhub
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
+    networks:
+      - posnet
+
+networks:
+  posnet:
+    driver: bridge
+

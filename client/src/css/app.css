@@ -1,0 +1,109 @@
+:root {
+  --nav-bg: #1e1b4b; /* Màu tối sang trọng (Indigo 950) */
+  --nav-text: #e0e7ff;
+  --nav-active-bg: #4f46e5; /* Màu highlight (Indigo 600) */
+  --nav-hover: #312e81;
+  --page-bg: #f3f4f6;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: var(--page-bg);
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navigation Bar Styling */
+.app-header {
+  background-color: var(--nav-bg);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.app-nav {
+  max-width: 1400px; /* Đồng bộ với POS container */
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.app-menu {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Nav Link Styling */
+.app-nav-link {
+  text-decoration: none;
+  color: var(--nav-text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.app-nav-link:hover {
+  background-color: var(--nav-hover);
+  color: #fff;
+}
+
+/* Active State (React Router tự thêm class 'active') */
+.app-nav-link.active {
+  background-color: var(--nav-active-bg);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Loading Spinner */
+.app-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  color: #6b7280;
+}
+
+.app-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid var(--nav-active-bg);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
