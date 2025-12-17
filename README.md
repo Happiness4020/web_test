@@ -412,7 +412,8 @@ Hoặc: npx vite --host --port 5174
                 "http://127.0.0.1:5174"
             )
 ```
-- Sau đó chỉnh cần chạy lại 2 terminal của frontend và backend
+- Sau đó chỉ cần chạy lại 2 terminal của frontend và backend
+
 
 
 **Nếu dùng Docker-compose thì** 
@@ -421,7 +422,7 @@ server:
     build:
       context: ./server
     ports:
-      - "5000:5000" --> chỉnh port backend 5000 thành 5001 
+      - "5000:5000"       --> chỉnh port backend 5000 thành 5001 
     environment:
       ASPNETCORE_URLS: http://+:5000
     networks:
@@ -435,7 +436,7 @@ server:
         VITE_API_BASE: http://localhost:5000/api
         VITE_SIGNALR_URL: http://localhost:5000/orderhub
     ports:
-      - "5174:80"  --> chỉnh port frontend 5173 thành 5174 
+      - "5173:80"        --> chỉnh port frontend 5173 thành 5174 
     depends_on:
       - server
     networks:
