@@ -442,6 +442,11 @@ server:
     networks:
       - posnet
 ```
+- Sau đó chạy lại lệnh:
+  ```bash
+# Tại thư mục gốc dự án
+docker-compose up --build
+```
 
 
 ---
